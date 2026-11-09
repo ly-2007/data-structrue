@@ -121,7 +121,6 @@ void Bulid2(LinkList L,int num){
 		Student a1;
 		Lnode* a = (Lnode*)malloc(sizeof(Lnode));
 		//cin>>(Student a1);
-		//p��βָ�룬ָ�����һ��Ԫ��
 		a->data = a1;
 		a->next = NULL ;
 		p->next = a;
