@@ -13,7 +13,7 @@ typedef struct Lnode{
 	struct Lnode* next;
 }Lnode,*LinkList;
 
-//¼ÆËã³¤¶È(´øÍ·½áµã)
+//get the length of the linked list
 int GetLength(LinkList a){
 	int len = 0;
 	if(!a || a->next == nullptr){
@@ -27,7 +27,7 @@ int GetLength(LinkList a){
 	}
 	return len;
 }
-//²éÕÒ-°´Ë³Ğò²éÕÒ£¬·µ»ØÔªËØ
+//get the num-th element of the linked list, and return it through stu
 bool GetElem(LinkList L,int num,Student* stu){
 	if(num < 1 || !L || stu == nullptr) return false;
 	Lnode* p = L->next;
@@ -38,7 +38,7 @@ bool GetElem(LinkList L,int num,Student* stu){
 	*stu = p->data;
 	return true;
 }
-//°´Öµ²éÕÒ-·µ»ØµØÖ·
+//locate an element by its value and return its address
 Lnode* LocateElem1(LinkList L,int num){
 	if(!L) return NULL;
 	Lnode *p = L->next;
@@ -49,15 +49,9 @@ Lnode* LocateElem1(LinkList L,int num){
 
 	return p;
 }
-/*C ÓïÑÔµ×²ãÇÉÃîÉè¼Æ£º½á¹¹ÌåµÄµØÖ·£¬µÈÓÚÆäµÚÒ»¸ö³ÉÔ±µÄµØÖ·¡£
-Ò²¾ÍÊÇ£¬¼ÙÉè LNode *p = 0x1000;£¨½ÚµãµÄÆğÊ¼µØÖ·£©£¬
-ÄÇÃ´&(p->data) µÄÄÚ´æµØÖ·Ò²ÊÇ 0x1000(ÒòÎª data ÊÇµÚÒ»¸ö³ÉÔ±)*/
-//°´Öµ²éÕÒ-·µ»ØÎ»Ğò
+//locate an element by its value and return its position
 int LocateElem2(LinkList L,int num){
 	if(!L) return 0;
-	/*Èç¹û L ²»Îª¿Õ£¬µ« L->next Îª¿Õ£¨¼´¿Õ±í£©£¬´úÂëÒ²ÊÇ°²È«µÄ£¬
-	ÒòÎª p = L->next »áµÃµ½ NULL£¬Ö±½ÓÌø¹ı while Ñ­»·£¬
-	×îºó·µ»Ø 0¡£*/
 	Lnode* p = L->next;
 	int j=1;
 	while(p && p->data.id != num){
@@ -67,7 +61,7 @@ int LocateElem2(LinkList L,int num){
 	if(p) return j;
 	return 0;
 }
-//°´stu²éÕÒÊÇ·ñ´æÔÚ
+//check if an element exists in the linked list
 bool ExistElem(LinkList L,Student goal){
 	if(!L) return false;
 	Lnode *p = L->next;
@@ -77,7 +71,7 @@ bool ExistElem(LinkList L,Student goal){
 	}
 	return p != nullptr;
 }
-//ÔÚnumÖ®Ç°²åÈë½áµã
+//insert an element into the linked list
 bool insert(LinkList L,int num,Lnode &G){
 	if(!L || num < 1) return false;
 	int j = 1;
@@ -86,12 +80,11 @@ bool insert(LinkList L,int num,Lnode &G){
 		p = p->next;
 		j++;
 	}
-
 	G.next = p->next;
 	p->next = &G;
 	return 1;
 }
-//É¾³ıµÚi¸ö½áµã
+//delete the num-th element of the linked list
 bool Delete(LinkList &L,int i){
 	if(!L || i<1) return 0;
 	int j = 1;
@@ -103,18 +96,16 @@ bool Delete(LinkList &L,int i){
 	if(!p || p->next == NULL) {
 		return false;
 	}
-	//pÖ¸Ïò±»É¾µÄÇ°Ò»¸ö,dÖ¸Ïò±»É¾µÄ
 	Lnode *d = p->next;
 	
 	p->next = d->next;
 	delete d;
 	return 1;
 }
-// ½¨Á¢Á´±í
+//build a linked list by head insertion
 void Build(LinkList L,int num){
 	L->next = NULL;
 	for(int i = 0;i<num;i++){
-//ÊäÈëstudent
 		Student a1;
 		Lnode* p = (Lnode*)malloc(sizeof(Lnode));
 		p->next = L->next;
@@ -122,7 +113,7 @@ void Build(LinkList L,int num){
 		L->next = p;
 	}
 }
-//Î²²å·¨
+//build a linked list by tail insertion
 void Bulid2(LinkList L,int num){
 	Lnode* p;
 	p = L;
@@ -130,14 +121,14 @@ void Bulid2(LinkList L,int num){
 		Student a1;
 		Lnode* a = (Lnode*)malloc(sizeof(Lnode));
 		//cin>>(Student a1);
-		//pÊÇÎ²Ö¸Õë£¬Ö¸Ïò×îºóÒ»¸öÔªËØ
+		//pï¿½ï¿½Î²Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½
 		a->data = a1;
 		a->next = NULL ;
 		p->next = a;
 		p = a;
 	}
 }
-//ºÏ²¢Á´±í
+//merge two linked lists into a new linked list
 void Union(LinkList L1,LinkList L2,LinkList L3){
 	Lnode* p1 = L1->next;
 	Lnode* p2 = L2->next;
@@ -158,6 +149,7 @@ void Union(LinkList L1,LinkList L2,LinkList L3){
 	p3->next = (!p1 ? p2:p1);
 	delete L2;
 }
+//just a test
 int main(){
 
 

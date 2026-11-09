@@ -8,7 +8,7 @@ typedef struct DuNode{
 }DuNode,*DuLinkList;
 
 void Bulid (DuLinkList L,int num){
-	L->prior = nullptr; //L是头指针
+	L->prior = nullptr; //L is the head node, its prior pointer is null
 	DuNode* p = L;
 	for(int i = 0;i<num;i++){
 		string a;
@@ -19,16 +19,16 @@ void Bulid (DuLinkList L,int num){
 		f->prior = p;
 		f->next = nullptr;
 		p = f;
-  /*双向循环链表：
+  /*
 		if(i == num-1){
 		   f->next = L;
 		   L->prior = f;
 		}*/
 	}
 }
-//插入
+//insert an element into the linked list
 void Insert(DuLinkList L,int num,DuNode &a){
-	DuNode* p = L; //指向前一个
+	DuNode* p = L; //point to the head node
 	for(int i = 1;i<num;i++){
 		p = p->next;
 	}
@@ -37,20 +37,20 @@ void Insert(DuLinkList L,int num,DuNode &a){
 	p->next->prior = &a;
 	p->next = &a;
 }
-//删除
+//delete the num-th element of the linked list
 void Delete(DuLinkList L,int num){
 	DuNode* p = L;
 	for(int i=1;i<num;i++){
 		p = p->next;
 	}
-	DuNode* s = p->next;//s指向被删除的
+	DuNode* s = p->next;//s point to the node to be deleted
 	s->next->prior = p;
 	s->prior->next = s->next;
 	delete s;
 }
 
 
-
+//just a test
 int main() {
 	
 	

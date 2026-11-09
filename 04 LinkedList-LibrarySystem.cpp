@@ -12,11 +12,11 @@ typedef struct Lnode{
 	struct Lnode* next;
 }Lnode,*LinkList;
 
-//增
+//add a book to the linked list
 bool add(LinkList L1,Book b)
-//删
+//delete a book from the linked list
 void delete()
-//查
+//search a book in the linked list
 bool
 
 int main(){

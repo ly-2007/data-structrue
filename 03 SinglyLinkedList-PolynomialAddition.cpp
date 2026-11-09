@@ -2,8 +2,8 @@
 using namespace std;
 
 typedef struct data {
-	float coef;	//系数，coefficient
-	float exp;	//指数，exponent
+	float coef;	//coefficient
+	float exp;	//exponent
 } data;
 
 typedef struct Lnode {
@@ -11,7 +11,7 @@ typedef struct Lnode {
 	struct Lnode* next;
 } Lnode, *LinkList;
 
-// 辅助函数：建一个节点
+// add two polynomials represented as linked lists
 Lnode* CreateNode(float coef, float exp) {
 	Lnode* newNode = new Lnode;
 	newNode->a.coef = coef;
@@ -20,10 +20,10 @@ Lnode* CreateNode(float coef, float exp) {
 	return newNode;
 }
 
-// 辅助函数：打印链表（跳过头结点）
+// helper function: print the linked list (skip the head node)
 void PrintList(LinkList L) {
 	if (!L || !L->next) {
-		cout << "链表为空或只有头结点" << endl;
+		cout << "List is empty or has only a head node" << endl;
 		return;
 	}
 	Lnode* p = L->next;
@@ -41,12 +41,12 @@ int main() {
 	LinkList L3;
 	L1 = new Lnode;
 	L2 = new Lnode;
-	//假装已经有了两个链表
-	// 建表 L1: 3x^2 + 4x^1
+	// Pretend that you already have two linked lists
+	// create L1: 3x^2 + 4x^1
 	L1->next = CreateNode(3, 2);
 	L1->next->next = CreateNode(4, 1);
 
-	// 建表 L2: -3x^2 + 2x^1
+	// create L2: -3x^2 + 2x^1
 	L2->next = CreateNode(-3, 2);
 	L2->next->next = CreateNode(2, 1);
 
@@ -78,7 +78,7 @@ int main() {
 
 	}
 	p3->next = (!p1 ? p2 : p1);
-	cout << "你的代码处理正常数据的结果：" << endl;
+	cout << "Your code's result for normal data:" << endl;
 	PrintList(L3);
 	return 0;
 }
