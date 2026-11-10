@@ -1,0 +1,11 @@
+#include<iostream>
+using namespace std;
+
+//converse,return remainder 
+int converse(int a,int radix){
+    return a%radix;
+}
+
+int main(
+
+)
