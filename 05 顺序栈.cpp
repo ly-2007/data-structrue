@@ -3,7 +3,7 @@
 using namespace std;
 
 #define MAXSIZE 100
-typedef int SElemType;/*shuo shi bi #define hao,yingwei define zhishitidai*/
+typedef int SElemType;/*说是比#define好，后者只是起到一个替换的作用*/
 
 typedef struct{
     SElemType* base;
@@ -45,7 +45,7 @@ void DestroyStack(SqStack &s){
 
 bool Push(SqStack &s,SElemType a){
     if(s.top == s.base) return false;
-    *s.top = a;//s.top = &a;
+    *s.top = a;//s.top = &a;我一开始写的是后者，指针赋值，是不对的，值得思考
     s.top++;
     return true;
 }
