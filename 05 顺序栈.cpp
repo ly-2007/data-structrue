@@ -49,9 +49,19 @@ bool Push(SqStack &s,SElemType a){
     s.top++;
     return true;
 }
-//converse,return remainder 
-int converse(int a,int radix){
-    return a%radix;
+
+SElemType& Pop(SqStack &s){
+    if(s. top == s.base) exit(0);
+    SElemType a = *s.top;
+    s.top--;
+    return a;
+}
+
+bool Pop (SqStack &s,SElemType &e){
+    if(s.top == s.base) return false;
+    e = *s.top;
+    s.top--;
+    return true;
 }
 
 int main(){
