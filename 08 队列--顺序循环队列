@@ -1,0 +1,56 @@
+//队列 Queue 表头删除(出队)，表尾插入(入队)
+//FIFO---First In First Out
+#include<iostream>
+#include<new>
+using namespace std;
+
+#define MAXQSIZE 100 //最大队列长度
+typedef int QElemType ; 
+typedef struct{
+    QElemType* base;
+    int front; //头部下标
+    int rear; //尾部下标,指向下一个没有元素的部分
+}SqQueue;
+//需要两个“指针”确定内部哪里有元素
+
+//初始化
+bool InitQueue(SqQueue &Q){
+    try {
+        Q.base = new QElemType[MAXQSIZE];
+    } catch(const std::bad_alloc&){
+        Q.base = nullptr;
+        Q.front = Q.rear = 0;
+        return false;
+    }
+    Q.front = Q.rear = 0;//哦哦，还能这样连等啊
+    return true;
+}
+
+//求队列长度
+int QueueLength(const SqQueue &Q){
+ /*   int len = 0;
+     if(Q.rear >= Q.front){
+        len = Q.rear - Q.front;
+    }else{
+        len = Q.rear - Q.front + MAXQSIZE;
+    }
+        return len;
+        我一开始的写法，但可以更简洁
+*/
+    return ((Q.rear - Q.front + MAXQSIZE)%MAXQSIZE);
+}
+
+//循环队列入队
+bool EnQueue(SqQueue &Q,QElemType e){
+    if((Q.rear + 1)%MAXQSIZE==Q.front) return false;
+    /*此处为何+1？*/
+
+
+    return true;
+}
+
+int main(){
+
+
+    return 0;
+}
