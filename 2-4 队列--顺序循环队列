@@ -4,7 +4,7 @@
 #include<new>
 using namespace std;
 
-#define MAXQSIZE 100 //最大队列长度
+#define MAXQSIZE 100 //最大队列长度,这里的容量要牺牲一个
 typedef int QElemType ; 
 typedef struct{
     QElemType* base;
@@ -44,10 +44,31 @@ int QueueLength(const SqQueue &Q){
 bool EnQueue(SqQueue &Q,QElemType e){
     if((Q.rear + 1)%MAXQSIZE==Q.front) return false;
     /*此处为何+1？*/
-
+    /*Q.rear 指向下一个要入队的位置*/
+    Q.base[Q.rear] = e;
+    Q.rear = (Q.rear+1)%MAXQSIZE;
 
     return true;
 }
+
+//出队
+bool outQueue(SqQueue &Q,QElemType &e){
+    if(Q.front == Q.rear){
+        return false;
+    }
+    e = Q.base[Q.front];
+    Q.front = (Q.front+1)%MAXQSIZE;
+    return true;
+}
+
+
+//取队头元素
+QElemType GetHead(const SqQueue &Q){
+    if(Q.front != Q.rear){//不空
+        return Q.base[Q.front];
+    }
+}
+
 
 int main(){
 
