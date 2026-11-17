@@ -48,3 +48,56 @@ bool StrEmpty(const String &s){
 //字串删除
 
 //串销毁
+
+//串匹配（查找）
+int Index_BF(String &s,String &T){
+    int n = s.length;
+    int m = T.length;
+    int i = 0;
+    int j = 0;
+    while(i<n && j<m){
+        if(s.ch[i] == T.ch[j]){
+            i++;
+            j++;
+        }else{
+            i = i-j+1; 
+            //此处 i-j是i-移动次数，即回到开头，+1即新的起点
+            j = 0;
+        }
+    }
+    if(j == m) return i-m;//匹配成功 i-m即i-移动次数，即匹配的串起点
+    return -1;
+}
+//串匹配（查找），从pos位置开始找 找不到就返回-1
+bool Index_BF(String &S,String &T,int &pos){
+    int n = S.length;
+    int m = T.length;
+    if(pos > n || pos < 0) return false;
+    int i = pos,j = 0;
+    while(i<n && j<m){
+        if(S.ch[i] == T.ch[j]){
+            i++;
+            j++;
+        }else{
+            i = i-j+1;
+            j = 0;
+        }
+    }
+    if(j == m) {
+        pos = i-m;
+        return true;
+    }
+    return false;
+}
+//串匹配---KMP算法
+int* build_next(String &a){
+    return 
+}
+int Index_KMP(String &s,String &t){
+    int* next = build_next(t);
+
+    int i = j = 0;
+    while(i < s.length){
+
+    }
+}
